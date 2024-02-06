@@ -1,0 +1,59 @@
+Detailed Steps for Project: Auto Scaling and Load Balancing
+Step 1: Set Up an Elastic Load Balancer (ELB)
+Navigate to ELB Creation:
+
+Access the AWS Management Console.
+Go to the EC2 Dashboard.
+Under the "Load Balancing" section, select "Load Balancers".
+Click “Create Load Balancer”.
+Select ELB Type:
+
+Choose between Application Load Balancer (ALB) for HTTP/HTTPS traffic or Network Load Balancer (NLB) for TCP, UDP, and TLS traffic based on your application requirements.
+Configure ELB:
+
+Enter a name for your load balancer.
+Select a scheme (internet-facing for external traffic or internal for internal network traffic).
+Set up listeners, defining the protocols (HTTP, HTTPS, TCP) and ports you want the ELB to listen on.
+Network Mapping:
+
+Choose the VPC and assign it to subnets in different Availability Zones for high availability.
+Security Settings:
+
+For HTTPS listeners, specify SSL certificates and security policies.
+Assign security groups that control the traffic allowed to and from the load balancer.
+Routing and Target Group:
+
+Define target groups (a group of destination resources, like EC2 instances) for routing traffic.
+Set up health checks for the target group to ensure traffic is only sent to healthy instances.
+Review and Create:
+
+Review your configurations and create the load balancer.
+Note the DNS name of the ELB; this is used to route traffic to your instances.
+Step 2: Configure Auto Scaling Groups
+Launch Configuration/Template:
+
+Go to the “Auto Scaling Groups” section on the EC2 Dashboard.
+Start by creating a launch configuration or template with instance details such as type, AMI, and key pair.
+Create Auto Scaling Group:
+
+Name your group and select the launch configuration or template you created.
+Define the size of the group (minimum, maximum, and desired capacity).
+Configure Network:
+
+Select the VPC and subnets. Ensure these are the same as those chosen for your ELB for seamless integration.
+Scaling Policies:
+
+Create policies based on specific metrics (like CPU utilization) to automatically adjust the number of instances.
+Attach to Load Balancer:
+
+Associate your Auto Scaling group with the previously created ELB to ensure new instances are automatically registered with the ELB.
+Health Checks and Notifications:
+
+Configure health check grace periods and types to ensure that instances have time to boot and become healthy before being checked.
+Optionally, set up notifications to alert you about scaling events.
+Review and Launch:
+
+Review your settings, then launch the Auto Scaling group.
+Testing and Verification
+Load Testing: Perform load testing to simulate traffic and observe how the Auto Scaling group adds or removes instances.
+Monitoring: Use Amazon CloudWatch to monitor metrics and logs. Adjust your configurations based on the performance data.
